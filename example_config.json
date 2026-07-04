@@ -1,0 +1,10 @@
+{
+    "token": "",
+    "clientid": "",
+    "mysql": {
+        "host": "",
+        "user": "",
+        "password": "",
+        "database": ""
+    }
+}

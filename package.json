@@ -1,0 +1,23 @@
+{
+  "name": "starbrew_moderation",
+  "version": "0.0.1",
+  "description": "A moderation tool for Starbrew",
+  "homepage": "https://github.com/lunyavera/Starbrew_Moderation#readme",
+  "bugs": {
+    "url": "https://github.com/lunyavera/Starbrew_Moderation/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lunyavera/Starbrew_Moderation.git"
+  },
+  "license": "MIT",
+  "author": "Lunyavera",
+  "type": "discordjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "discord.js": "^14.26.4"
+  }
+}

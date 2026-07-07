@@ -24,11 +24,11 @@ class PunishmentManager {
         case_id VARCHAR(8) UNIQUE,
         user_id VARCHAR(32) NOT NULL,
         moderator_id VARCHAR(32) NOT NULL,
-        type ENUM('mute','ban', 'unban') NOT NULL,
+        type ENUM('mute','ban','unban') NOT NULL,
         reason TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       ) ENGINE=InnoDB
-    );
+    `);
 
     const [rows] = await connection.query('SELECT COALESCE(MAX(id), 0) AS last_id FROM punishments');
     this.punishmentCounter = rows[0]?.last_id || 0;

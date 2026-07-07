@@ -20,7 +20,7 @@ function buildModerationEmbed(interaction, user, reason) {
 
   return new EmbedBuilder()
     .setDescription(`${user} (ID: ${user.id}) has been banned.`)
-    .setAuthor({ name: `${botName} Moderation`, iconURL: botIcon })
+    .setAuthor({ name: `${botName}`, iconURL: botIcon })
     .addFields({ name: 'Reason', value: reason, inline: true })
     .setColor(0xFF0000)
     .setTimestamp();
@@ -155,10 +155,10 @@ module.exports = {
       flags: MessageFlags.Ephemeral
     });
 
-    /*await interaction.guild.members.ban(targetUser, {
+    await interaction.guild.members.ban(targetUser, {
       deleteMessageSeconds,
       reason: `${reason} | Banned by ${interaction.user.tag}`
-    });*/
+    });
 
   }
 };

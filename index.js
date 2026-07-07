@@ -9,7 +9,7 @@ const client = new Client({intents: [
 
 const fs = require("node:fs");
 const config = require('./config.json');
-
+const punishmentManager = require('./managers/punishmentManager');
 /*
 --------------------------
  Register Command List
@@ -35,11 +35,15 @@ for (const folder of commandFolders) {
         commands.push(command.data.toJSON());
         // Ensure the command has the correct properties
         if('data' in command && 'execute' in command) {
+
             // Register the command in the array for later registration
             client.commands.set(command.data.name, command);
+
         } else {
+
             // If there is an error, log it.
             console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+            
         }
 
     }
@@ -59,9 +63,13 @@ const eventFiles = fs
 for (const file of eventFiles) {
     const event = require(`./events/${file}`);
     if (event.once) {
+
         client.once(event.name, (...args) => event.execute(...args, client));
+
     } else {
+
         client.on(event.name, (...args) => event.execute(...args, client));
+
     }
 }
 
@@ -92,6 +100,17 @@ const rest = new REST({ version: '10' }).setToken(config.token);
     }
 })();
 
-// Login to Discord
-client.login(config.token);
+// Initialize PunishmentManager and login to Discord
+(async () => {
+    try {
+        await punishmentManager.init();
+        client.punishmentManager = punishmentManager;
+        console.log('PunishmentManager initialized');
+    } catch (err) {
+        console.error('Failed to initialize PunishmentManager:', err);
+    }
+
+    // Login to Discord
+    client.login(config.token);
+})();
 

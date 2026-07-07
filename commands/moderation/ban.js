@@ -130,7 +130,6 @@ module.exports = {
       .setTitle(`You were banned from ${interaction.guild.name}`)
       .addFields(
         { name: 'Moderator', value: interaction.user.tag, inline: true },
-        { name: 'Removed Messages', value: removalLabel, inline: true },
         { name: 'Case ID', value: caseId || 'Not recorded', inline: true }
       );
 

@@ -24,7 +24,7 @@ class PunishmentManager {
         case_id VARCHAR(8) UNIQUE,
         user_id VARCHAR(32) NOT NULL,
         moderator_id VARCHAR(32) NOT NULL,
-        type ENUM('mute','ban','unban') NOT NULL,
+        type ENUM('ban','unban','timeout','untimeout') NOT NULL,
         reason TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       ) ENGINE=InnoDB
@@ -51,7 +51,7 @@ class PunishmentManager {
 
   async addPunishment({ userId, moderatorId, type, reason }) {
     if (!this.pool) throw new Error('PunishmentManager not initialized');
-    if (!['mute', 'ban'].includes(type)) throw new Error('Invalid punishment type');
+    if (!['ban', 'unban', 'timeout', 'untimeout'].includes(type)) throw new Error('Invalid punishment type');
 
     const caseId = this.getNextCaseId();
 
